@@ -4,13 +4,13 @@ int FsItem::id_counter = 0;
 
 ostream &operator<<(ostream &stream, FsItem o)
 {
-    stream << "[ FsItem: " << o.getName() << " ]" << endl;
+    stream << "[ FsItem #" << o.getId() << ": " << o.getName() << " ]" << endl;
     return stream;
 }
 
 ostream &operator<<(ostream &stream, FsItem * o)
 {
-    stream << "[ FsItem: " << o->getName() << " ]" << endl;
+    stream << "[ FsItem #" << o->getId() << ": " << o->getName() << " ]" << endl;
     return stream;
 }
 
@@ -33,4 +33,9 @@ void FsItem::setName(const string theName)
 string FsItem::getName()
 {
     return name;
+}
+
+int FsItem::getId()
+{
+    return id;
 }

@@ -9,3 +9,8 @@ Writer::~Writer()
 {
     //
 }
+
+void Writer::print()
+{
+    cout << "Print all items will be here..." << endl;
+}

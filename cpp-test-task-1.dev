@@ -38,7 +38,7 @@ ProductName=
 ProductVersion=
 AutoIncBuildNrOnRebuild=0
 AutoIncBuildNrOnCompile=0
-UnitCount=9
+UnitCount=7
 
 [Profile1]
 ProfileName=MingW gcc
@@ -116,20 +116,10 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit4]
-FileName=read_file_to_vector.cpp
-CompileCpp=1
-Folder=cpp-test-task-1
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit5]
-FileName=read_file_to_vector.h
+FileName=Parser.cpp
 CompileCpp=1
-Folder=cpp-test-task-1
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -137,9 +127,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=Parser.h
+FileName=Writer.cpp
 CompileCpp=1
-Folder=
+Folder=cpp-test-task-1
 Compile=1
 Link=1
 Priority=1000
@@ -147,9 +137,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
-FileName=Parser.cpp
+FileName=Writer.h
 CompileCpp=1
-Folder=
+Folder=cpp-test-task-1
 Compile=1
 Link=1
 Priority=1000
@@ -170,6 +160,16 @@ BuildCmd=
 FileName=Writer.h
 CompileCpp=1
 Folder=cpp-test-task-1
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit4]
+FileName=Parser.h
+CompileCpp=1
+Folder=
 Compile=1
 Link=1
 Priority=1000

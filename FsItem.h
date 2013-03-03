@@ -17,6 +17,7 @@ class FsItem
     public:
         FsItem();
         ~FsItem();
+        int getId();
         void setName(const string theName);
         string getName();
         friend ostream &operator<<(ostream &stream, FsItem o);
@@ -25,7 +26,6 @@ class FsItem
         FsItem * getParent();
         void addChild(const FsItem * theChild);
         void addChildren(const vector<FsItem *> theChildren);
-        int getID();
         string getPath();
         void setType(const string theType);
         string getType();
