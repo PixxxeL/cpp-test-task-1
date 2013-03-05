@@ -1,11 +1,9 @@
 #include <cstdlib>
 #include <iostream>
+#include "FsItemManager.h"
 #include "Parser.h"
-#include "Writer.h"
 
 using namespace std;
-
-void test();
 
 int main(int argc, char *argv[])
 {
@@ -14,22 +12,14 @@ int main(int argc, char *argv[])
     {
         dataFilePath = argv[1];
     }
+    // объект управления нодами
+    FsItemManager manager = FsItemManager();
+    // парсер данных
     Parser parser = Parser();
+    parser.setManager(&manager);
     parser.parse(dataFilePath);
-    Writer writer = Writer();
-    writer.print();
-    test();
+    // печатаем
+    manager.print();
     system("pause");
     return EXIT_SUCCESS;
-}
-
-// в окончательной версии - выпилить
-void test()
-{
-    /*FsItem * o1 = new FsItem();
-    o1->setName(string("folder 1"));
-    FsItem * o2 = new FsItem();
-    o2->setName(string("folder 2"));
-    cout << o1 << o2 << endl;*/
-    //read_file_to_vector();
 }

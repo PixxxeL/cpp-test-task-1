@@ -1,7 +1,7 @@
 [Project]
 FileName=cpp-test-task-1.dev
 Name=cpp-test-task-1
-UnitCount=1
+UnitCount=7
 PchHead=-1
 PchSource=-1
 Ver=3
@@ -117,9 +117,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=Parser.cpp
+FileName=Parser.h
 CompileCpp=1
-Folder=
+Folder=cpp-test-task-1
 Compile=1
 Link=1
 Priority=1000
@@ -127,7 +127,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=Writer.cpp
+FileName=FsItemManager.cpp
 CompileCpp=1
 Folder=cpp-test-task-1
 Compile=1
@@ -137,7 +137,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
-FileName=Writer.h
+FileName=FsItemManager.h
 CompileCpp=1
 Folder=cpp-test-task-1
 Compile=1
@@ -167,9 +167,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=Parser.h
+FileName=Parser.cpp
 CompileCpp=1
-Folder=
+Folder=cpp-test-task-1
 Compile=1
 Link=1
 Priority=1000

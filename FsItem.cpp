@@ -22,7 +22,15 @@ FsItem::FsItem()
 
 FsItem::~FsItem()
 {
-    //
+    /*delete name;
+    delete path;
+    delete parent;
+    delete children;*/
+}
+
+int FsItem::getId()
+{
+    return id;
 }
 
 void FsItem::setName(const string theName)
@@ -35,7 +43,46 @@ string FsItem::getName()
     return name;
 }
 
-int FsItem::getId()
+
+void FsItem::setPath(const string thePath)
 {
-    return id;
+    path = thePath;
+}
+
+string FsItem::getPath()
+{
+    return path;
+}
+
+
+void FsItem::setType(int theType)
+{
+    type = theType == FS_FILE ? FS_FILE : FS_DIR;
+}
+
+int FsItem::getType()
+{
+    return type;
+}
+
+
+void FsItem::setDepth(int theDepth)
+{
+    depth = theDepth;
+}
+
+int FsItem::getDepth()
+{
+    return depth;
+}
+
+
+void FsItem::setSize(int theSize)
+{
+    size = theSize;
+}
+
+int FsItem::getSize()
+{
+    return size;
 }

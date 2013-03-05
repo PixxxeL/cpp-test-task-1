@@ -2,12 +2,17 @@
 
 Parser::Parser()
 {
-    //
+    manager = 0;
 }
 
 Parser::~Parser()
 {
     //
+}
+
+void Parser::setManager(const FsItemManager * theManager)
+{
+    manager = (FsItemManager *)theManager;
 }
 
 void Parser::parse(const char * dataFilePath)
@@ -33,7 +38,7 @@ void Parser::_processLine(const string line)
 {
     vector<string> parts = Parser::split_string(line, ' ');
     int partsSize = parts.size();
-    bool isFile = false;
+    int itemType = FS_DIR;
     int fileSize = 0;
     if(partsSize < 1)
     {
@@ -42,23 +47,42 @@ void Parser::_processLine(const string line)
     // определяем тип последнего элемента
     else if(partsSize == 2)
     {
-        isFile = true;
+        itemType = FS_FILE;
         istringstream ss(parts[1]);
         ss >> fileSize;
     }
     vector<string> items = Parser::split_string(parts[0], '\\');
-    vector<string>::iterator itemsIt = items.begin();
-    while(itemsIt != items.end())
+    for (int i = 0; i < items.size(); ++i)
     {
-        // no info about path!
-        Parser::_processItem(*itemsIt, fileSize, isFile);
-        itemsIt++;
+        Parser::_processItem(items, i, fileSize, itemType);
     }
 }
 
-void Parser::_processItem(const string name, int size, bool isFile)
+void Parser::_processItem(const vector<string> &items, int count, int size, int itemType)
 {
-    //cout << isFile << " " << name << " " << size << endl;
+    static vector<string> paths;
+    int iSize = items.size(); 
+    string path = "/";
+    for (int i = 0; i <= count; ++i) {
+        path += items[i];
+        if (iSize != count || (iSize == count && itemType == FS_DIR)) {
+            path += "/";
+        }
+    }
+    for (int j = 0; j < paths.size(); ++j) {
+        if (path == paths[j]) return;
+    }
+    paths.push_back(path);
+    cout << path << endl;
+    // build path, add if not exists else return
+    FsItem * item = new FsItem();
+    item->setName(items[count]);
+    item->setPath(path);
+    item->setType(itemType);
+    item->setDepth(count);
+    item->setSize(size);
+    // add parent children
+    //cout << item << endl;
 }
 
 vector<string> &Parser::_split_string(const string &s, char delim, vector<string> &parts)

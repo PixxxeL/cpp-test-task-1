@@ -1,3 +1,6 @@
+#ifndef _FS_ITEM_H
+#define _FS_ITEM_H
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -5,8 +8,8 @@
 
 using namespace std;
 
-const string FS_DIR = "FS_DIR";
-const string FS_FILE = "FS_FILE";
+const int FS_DIR  = 1;
+const int FS_FILE = 2;
 
 /**
  * Класс - представитель компоненты файловой системы (директория или файл)
@@ -20,19 +23,20 @@ class FsItem
         int getId();
         void setName(const string theName);
         string getName();
-        friend ostream &operator<<(ostream &stream, FsItem o);
-        friend ostream &operator<<(ostream &stream, FsItem * o);
-        /*void setParent(const FsItem * theParent);
-        FsItem * getParent();
-        void addChild(const FsItem * theChild);
-        void addChildren(const vector<FsItem *> theChildren);
+        void setPath(const string thePath);
         string getPath();
-        void setType(const string theType);
-        string getType();
+        void setType(int theType);
+        int getType();
         void setDepth(int theDepth);
         int getDepth();
         void setSize(int theSize);
-        int getSize();*/
+        int getSize();
+        /*void setParent(const FsItem * theParent);
+        FsItem * getParent();
+        void addChild(const FsItem * theChild);
+        void addChildren(const vector<FsItem *> theChildren);*/
+        friend ostream &operator<<(ostream &stream, FsItem o);
+        friend ostream &operator<<(ostream &stream, FsItem * o);
     
     protected:
         // сквозной сиквенс
@@ -42,7 +46,7 @@ class FsItem
         // размер файла (если файл)
         int size;
         // тип (директория или файл)
-        string type;
+        int type;
         // имя директории или файла
         string name;
         // полный путь от корня (если директория - завершаем /)
@@ -54,3 +58,5 @@ class FsItem
         // счетчик идентификаторов
         static int id_counter;
 };
+
+#endif
