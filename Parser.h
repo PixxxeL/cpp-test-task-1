@@ -15,7 +15,7 @@ class Parser
     public:
         Parser();
         ~Parser();
-        void setManager(const FsItemManager * theManager);
+        void setManager(FsItemManager * theManager);
         void parse(const char * dataFilePath);
         vector<string> split_string(const string &s, char delim);
         

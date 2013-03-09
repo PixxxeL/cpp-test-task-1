@@ -10,9 +10,9 @@ Parser::~Parser()
     //
 }
 
-void Parser::setManager(const FsItemManager * theManager)
+void Parser::setManager(FsItemManager * theManager)
 {
-    manager = (FsItemManager *)theManager;
+    manager = theManager;
 }
 
 void Parser::parse(const char * dataFilePath)
@@ -60,29 +60,41 @@ void Parser::_processLine(const string line)
 
 void Parser::_processItem(const vector<string> &items, int count, int size, int itemType)
 {
-    static vector<string> paths;
-    int iSize = items.size(); 
+    static FsItem * prevItem = manager->getRoot();
+    int iSize = items.size();
     string path = "/";
+    int segType = FS_DIR;
+    
     for (int i = 0; i <= count; ++i) {
         path += items[i];
-        if (iSize != count || (iSize == count && itemType == FS_DIR)) {
+        if (i == count && iSize - 1 == count && itemType == FS_FILE) {
+            segType = FS_FILE;
+        }
+        else {
             path += "/";
         }
     }
-    for (int j = 0; j < paths.size(); ++j) {
-        if (path == paths[j]) return;
+    manager->addPath(path);
+    
+    if (segType != FS_FILE) {
+        size = 0;
     }
-    paths.push_back(path);
-    cout << path << endl;
-    // build path, add if not exists else return
+    
+    if (count == 0)
+    {
+        prevItem = manager->getRoot();
+    }
+    
     FsItem * item = new FsItem();
     item->setName(items[count]);
     item->setPath(path);
-    item->setType(itemType);
-    item->setDepth(count);
+    item->setType(segType);
+    item->setDepth(count + 1);
     item->setSize(size);
-    // add parent children
-    //cout << item << endl;
+    /*item->setParent(prevItem);
+    prevItem->addChild(item);
+    prevItem = item;*/
+    cout << item;
 }
 
 vector<string> &Parser::_split_string(const string &s, char delim, vector<string> &parts)

@@ -8,12 +8,13 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     const char * dataFilePath = "..\\..\\data\\data-1.txt";
-    if(argc >= 2)
+    if (argc >= 2)
     {
         dataFilePath = argv[1];
     }
     // объект управления нодами
     FsItemManager manager = FsItemManager();
+    manager.setRoot();
     // парсер данных
     Parser parser = Parser();
     parser.setManager(&manager);

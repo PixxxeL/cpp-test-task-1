@@ -31,10 +31,11 @@ class FsItem
         int getDepth();
         void setSize(int theSize);
         int getSize();
-        /*void setParent(const FsItem * theParent);
+        void setParent(FsItem * theParent);
         FsItem * getParent();
-        void addChild(const FsItem * theChild);
-        void addChildren(const vector<FsItem *> theChildren);*/
+        void addChild(FsItem * theChild);
+        vector<FsItem *> getChildren();
+        /*void addChildren(vector<FsItem *> theChildren);*/
         friend ostream &operator<<(ostream &stream, FsItem o);
         friend ostream &operator<<(ostream &stream, FsItem * o);
     
