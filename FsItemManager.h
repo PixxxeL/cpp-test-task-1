@@ -13,7 +13,8 @@ class FsItemManager
         FsItemManager();
         ~FsItemManager();
         void print();
-        void addPath(const string path);
+        bool addPath(const string path);
+        void addFsItem(FsItem * item);
         void setRoot();
         FsItem * getRoot();
     protected:

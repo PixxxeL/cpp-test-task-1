@@ -2,12 +2,13 @@
 
 Parser::Parser()
 {
-    manager = 0;
+    manager = NULL;
 }
 
 Parser::~Parser()
 {
-    //
+    manager = NULL;
+    delete manager;
 }
 
 void Parser::setManager(FsItemManager * theManager)
@@ -60,7 +61,6 @@ void Parser::_processLine(const string line)
 
 void Parser::_processItem(const vector<string> &items, int count, int size, int itemType)
 {
-    static FsItem * prevItem = manager->getRoot();
     int iSize = items.size();
     string path = "/";
     int segType = FS_DIR;
@@ -74,15 +74,12 @@ void Parser::_processItem(const vector<string> &items, int count, int size, int 
             path += "/";
         }
     }
-    manager->addPath(path);
+    if (!manager->addPath(path)) {
+        return;
+    }
     
     if (segType != FS_FILE) {
         size = 0;
-    }
-    
-    if (count == 0)
-    {
-        prevItem = manager->getRoot();
     }
     
     FsItem * item = new FsItem();
@@ -91,10 +88,8 @@ void Parser::_processItem(const vector<string> &items, int count, int size, int 
     item->setType(segType);
     item->setDepth(count + 1);
     item->setSize(size);
-    /*item->setParent(prevItem);
-    prevItem->addChild(item);
-    prevItem = item;*/
-    cout << item;
+    
+    manager->addFsItem(item);
 }
 
 vector<string> &Parser::_split_string(const string &s, char delim, vector<string> &parts)

@@ -7,7 +7,8 @@ FsItemManager::FsItemManager()
 
 FsItemManager::~FsItemManager()
 {
-    //
+    delete &paths;
+    delete &items;
 }
 
 void FsItemManager::print()
@@ -35,10 +36,19 @@ FsItem * FsItemManager::getRoot()
     return 0;
 }
 
-void FsItemManager::addPath(const string path)
+bool FsItemManager::addPath(const string path)
 {
     for (int i = 0; i < paths.size(); ++i) {
-        if (path == paths[i]) return;
+        if (path == paths[i]) {
+            return false;
+        }
     }
     paths.push_back(path);
+    return true;
+}
+
+void FsItemManager::addFsItem(FsItem * item)
+{
+    cout << item << endl;
+    //items.push_back(item);
 }

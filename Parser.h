@@ -17,13 +17,13 @@ class Parser
         ~Parser();
         void setManager(FsItemManager * theManager);
         void parse(const char * dataFilePath);
-        vector<string> split_string(const string &s, char delim);
+        static vector<string> split_string(const string &s, char delim);
         
     private:
         FsItemManager * manager;
         void _processLine(const string line);
         void _processItem(const vector<string> &items, int count, int size, int type);
-        vector<string> &_split_string(const string &s, char delim, vector<string> &elems);
+        static vector<string> &_split_string(const string &s, char delim, vector<string> &elems);
 };
 
 #endif
