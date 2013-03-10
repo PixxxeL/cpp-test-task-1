@@ -7,15 +7,15 @@ FsItemManager::FsItemManager()
 
 FsItemManager::~FsItemManager()
 {
-    /*delete &paths;
-    delete &items;*/
+    paths.clear();
+    items.clear();
 }
 
 void FsItemManager::print()
 {
     cout << "And output tree..." << endl;
     const char * resultFilePath = "..\\..\\data\\result-1.txt";
-    ifstream fs(resultFilePath, ios::in | ios::binary);
+    ofstream fs(resultFilePath);
     if (!fs) {
         cout << "Error opening " << resultFilePath << " file!" << endl;
     }

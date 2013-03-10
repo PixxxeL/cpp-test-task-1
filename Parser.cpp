@@ -7,8 +7,8 @@ Parser::Parser()
 
 Parser::~Parser()
 {
-    /*manager = NULL;
-    delete manager;*/
+    manager = NULL;
+    delete manager;
 }
 
 void Parser::setManager(FsItemManager * theManager)

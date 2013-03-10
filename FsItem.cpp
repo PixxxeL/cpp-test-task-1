@@ -35,11 +35,9 @@ FsItem::FsItem()
 
 FsItem::~FsItem()
 {
-    /*delete &name;
-    delete &path;
     parent = NULL;
     delete parent;
-    delete &children;*/
+    children.clear();
 }
 
 
