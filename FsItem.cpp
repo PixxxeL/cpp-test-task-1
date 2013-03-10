@@ -13,13 +13,15 @@ ostream &operator<<(ostream &stream, FsItem * o)
     stream << "[ FsItem #" << o->getId() << ": " << o->getPath() << " ]";
     FsItem * parent = o->getParent();
     if (parent) {
-        stream << endl << "  parent:   " << parent;
+        stream << endl << "  parent:   " << parent->getPath();
     }
-    /*stream << "  children: " << endl;
     vector<FsItem *> ch = o->getChildren();
-    for (int i = 0; i < ch.size(); ++i) {
-        stream << "            " << ch[i] << endl;
-    }*/
+    if (ch.size()) {
+        stream << endl << "  children: " << endl;
+        for (int i = 0; i < ch.size(); ++i) {
+            stream << "            " << ch[i]->getPath() << endl;
+        }
+    }
     return stream;
 }
 
@@ -31,11 +33,11 @@ FsItem::FsItem()
 
 FsItem::~FsItem()
 {
-    delete &name;
+    /*delete &name;
     delete &path;
     parent = NULL;
     delete parent;
-    delete &children;
+    delete &children;*/
 }
 int FsItem::getId()
 {

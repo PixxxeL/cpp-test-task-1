@@ -15,6 +15,7 @@ class FsItemManager
         void print();
         bool addPath(const string path);
         void addFsItem(FsItem * item);
+        void addFsItem(FsItem * item, const string prePath);
         void setRoot();
         FsItem * getRoot();
     protected:

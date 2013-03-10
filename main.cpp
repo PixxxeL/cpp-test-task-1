@@ -5,6 +5,9 @@
 
 using namespace std;
 
+/**
+ * Приложение работает только с ASCII-символами
+ */
 int main(int argc, char *argv[])
 {
     const char * dataFilePath = "..\\..\\data\\data-1.txt";

@@ -7,8 +7,8 @@ FsItemManager::FsItemManager()
 
 FsItemManager::~FsItemManager()
 {
-    delete &paths;
-    delete &items;
+    /*delete &paths;
+    delete &items;*/
 }
 
 void FsItemManager::print()
@@ -49,6 +49,22 @@ bool FsItemManager::addPath(const string path)
 
 void FsItemManager::addFsItem(FsItem * item)
 {
-    cout << item << endl;
-    //items.push_back(item);
+    items.push_back(item);
+}
+
+void FsItemManager::addFsItem(FsItem * item, const string prePath)
+{
+    FsItem * preItem = NULL;
+    for (int i = 0; i < items.size(); ++i) {
+        FsItem * candidate = items[i];
+        if (prePath == candidate->getPath()) {
+            preItem = candidate;
+            break;
+        }
+    }
+    if (preItem != NULL) {
+        item->setParent(preItem);
+        preItem->addChild(item);
+        items.push_back(item);
+    }
 }

@@ -7,8 +7,8 @@ Parser::Parser()
 
 Parser::~Parser()
 {
-    manager = NULL;
-    delete manager;
+    /*manager = NULL;
+    delete manager;*/
 }
 
 void Parser::setManager(FsItemManager * theManager)
@@ -62,10 +62,13 @@ void Parser::_processLine(const string line)
 void Parser::_processItem(const vector<string> &items, int count, int size, int itemType)
 {
     int iSize = items.size();
-    string path = "/";
+    string path = "/", prePath;
     int segType = FS_DIR;
     
     for (int i = 0; i <= count; ++i) {
+        if (i == count) {
+            prePath = path;
+        }
         path += items[i];
         if (i == count && iSize - 1 == count && itemType == FS_FILE) {
             segType = FS_FILE;
@@ -74,6 +77,7 @@ void Parser::_processItem(const vector<string> &items, int count, int size, int 
             path += "/";
         }
     }
+    
     if (!manager->addPath(path)) {
         return;
     }
@@ -89,7 +93,7 @@ void Parser::_processItem(const vector<string> &items, int count, int size, int 
     item->setDepth(count + 1);
     item->setSize(size);
     
-    manager->addFsItem(item);
+    manager->addFsItem(item, prePath);
 }
 
 vector<string> &Parser::_split_string(const string &s, char delim, vector<string> &parts)
