@@ -2,6 +2,7 @@
 #define _FS_ITEM_MANAGER_H
 
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include "FsItem.h"
 

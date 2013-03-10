@@ -13,7 +13,17 @@ FsItemManager::~FsItemManager()
 
 void FsItemManager::print()
 {
-    cout << "Print all items will be here..." << endl;
+    cout << "And output tree..." << endl;
+    const char * resultFilePath = "..\\..\\data\\result-1.txt";
+    ifstream fs(resultFilePath, ios::in | ios::binary);
+    if (!fs) {
+        cout << "Error opening " << resultFilePath << " file!" << endl;
+    }
+    if (items.size()) {
+        //fs << items[0] << endl;
+        cout << items[0] << endl;
+    }
+    fs.close();
 }
 
 void FsItemManager::setRoot() // create overrided with defined item
