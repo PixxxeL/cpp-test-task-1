@@ -14,7 +14,7 @@ FsItemManager::~FsItemManager()
 void FsItemManager::print()
 {
     cout << "And output tree..." << endl;
-    const char * resultFilePath = "data\\result-1.txt";
+    const char * resultFilePath = "..\\..\\data\\result-1.txt";
     ofstream fs(resultFilePath);
     if (!fs) {
         cout << "Error opening " << resultFilePath << " file!" << endl;

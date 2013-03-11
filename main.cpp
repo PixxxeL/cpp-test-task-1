@@ -10,7 +10,7 @@ using namespace std;
  */
 int main(int argc, char *argv[])
 {
-    const char * dataFilePath = "data\\data-1.txt";
+    const char * dataFilePath = "..\\..\\data\\data-1.txt";
     if (argc >= 2)
     {
         dataFilePath = argv[1];

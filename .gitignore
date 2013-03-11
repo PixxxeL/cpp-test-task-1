@@ -15,3 +15,5 @@
 /Output
 /Objects
 /Makefile.win
+*.layout
+*.dev

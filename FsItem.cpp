@@ -43,7 +43,9 @@ void FsItem::printInfo(ostream &stream)
 
 void FsItem::printTree(ostream &stream, bool isSort = false)
 {
-	stream << setw(depth) << (char)8 << name;
+	string before(depth, ' ');
+	stream << before << name;
+    //stream << setw(depth) << ' ' << name;
     if (isSort) {
 		sort(children.begin(), children.end(), _sortItems);
 	}
