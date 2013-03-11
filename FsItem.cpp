@@ -9,7 +9,7 @@ ostream &operator<<(ostream &stream, FsItem o)
         o.printInfo(stream);
     }
     else if (mode == PRINT_FOR_TREE) {
-        o.printTree(stream);
+        o.printTree(stream, true);
     }
     return stream;
 }
@@ -21,9 +21,38 @@ ostream &operator<<(ostream &stream, FsItem * o)
         o->printInfo(stream);
     }
     else if (mode == PRINT_FOR_TREE) {
-        o->printTree(stream);
+        o->printTree(stream, true);
     }
     return stream;
+}
+
+void FsItem::printInfo(ostream &stream)
+{
+    stream << "[ FsItem #" << id << ": " << path << " ]";  
+    if (parent) {
+        stream << endl << "  parent:   " << parent->getPath();
+    }
+	int cSize = children.size();
+    if (cSize) {
+        stream << endl << "  children: " << endl;
+        for (int i = 0; i < cSize; ++i) {
+            stream << "            " << children[i]->getPath() << endl;
+        }
+    }
+}
+
+void FsItem::printTree(ostream &stream, bool isSort = false)
+{
+	stream << setw(depth) << (char)8 << name;
+    if (isSort) {
+		sort(children.begin(), children.end(), _sortItems);
+	}
+	int cSize = children.size();
+    if (cSize) {
+        for (int i = 0; i < cSize; ++i) {
+            stream << endl << children[i];
+        }
+    }
 }
 
 FsItem::FsItem()
@@ -114,7 +143,8 @@ FsItem * FsItem::getParent()
 
 void FsItem::addChild(FsItem * theChild)
 {
-    for (int i = 0; i < children.size(); ++i) {
+    int cSize = children.size();
+	for (int i = 0; i < cSize; ++i) {
         if (theChild == children[i]) return;
     }
     children.push_back(theChild);
@@ -124,30 +154,6 @@ vector<FsItem *> FsItem::getChildren()
     return children;
 }
 
-void FsItem::printInfo(ostream &stream)
-{
-    stream << "[ FsItem #" << id << ": " << path << " ]";
-    if (parent) {
-        stream << endl << "  parent:   " << parent->getPath();
-    }
-    if (children.size()) {
-        stream << endl << "  children: " << endl;
-        for (int i = 0; i < children.size(); ++i) {
-            stream << "            " << children[i]->getPath() << endl;
-        }
-    }
-}
-
-void FsItem::printTree(ostream &stream)
-{
-    cout << setw(depth) << ' ' << name;
-    sort(children.begin(), children.end(), _sortItems); // only for this! remove for other
-    if (children.size()) {
-        for (int i = 0; i < children.size(); ++i) {
-            stream << endl << children[i];
-        }
-    }
-}
 
 bool _sortItems(FsItem * a, FsItem * b)
 {

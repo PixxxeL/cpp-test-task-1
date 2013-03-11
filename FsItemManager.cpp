@@ -14,14 +14,14 @@ FsItemManager::~FsItemManager()
 void FsItemManager::print()
 {
     cout << "And output tree..." << endl;
-    const char * resultFilePath = "..\\..\\data\\result-1.txt";
+    const char * resultFilePath = "data\\result-1.txt";
     ofstream fs(resultFilePath);
     if (!fs) {
         cout << "Error opening " << resultFilePath << " file!" << endl;
     }
     if (items.size()) {
-        //fs << items[0] << endl;
-        cout << items[0] << endl;
+        fs << items[0] << endl;
+        //cout << items[0] << endl;
     }
     fs.close();
 }

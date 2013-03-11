@@ -42,7 +42,7 @@ class FsItem
         void addChild(FsItem * theChild);
         vector<FsItem *> getChildren();
         void printInfo(ostream &stream);
-        void printTree(ostream &stream);
+        void printTree(ostream &stream, bool isSort);
         friend ostream &operator<<(ostream &stream, FsItem o);
         friend ostream &operator<<(ostream &stream, FsItem * o);
     
