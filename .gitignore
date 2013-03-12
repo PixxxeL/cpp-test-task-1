@@ -17,3 +17,5 @@
 /Makefile.win
 *.layout
 *.dev
+Debug
+ipch
